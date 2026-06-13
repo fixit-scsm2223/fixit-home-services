@@ -1,0 +1,140 @@
+```gitignore
+# =========================
+# Logs
+# =========================
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =========================
+# Runtime data
+# =========================
+
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# =========================
+# Diagnostic reports
+# =========================
+
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# =========================
+# Dependency directories
+# =========================
+
+node_modules/
+vendor/
+
+# =========================
+# Vue / Frontend build
+# =========================
+
+dist/
+frontend/dist/
+frontend/.vite/
+.vite/
+
+# =========================
+# Environment files
+# =========================
+
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# =========================
+# PHP / Composer
+# =========================
+
+composer.lock
+backend/vendor/
+backend/composer.lock
+
+# =========================
+# Upload files
+# =========================
+
+uploads/
+backend/uploads/
+backend/public/uploads/
+frontend/public/uploads/
+
+# =========================
+# Capacitor / Android
+# =========================
+
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/local.properties
+frontend/android/.idea/
+frontend/android/captures/
+frontend/android/app/release/
+frontend/android/app/debug/
+
+# =========================
+# IDE / Editor
+# =========================
+
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# =========================
+# OS generated files
+# =========================
+
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# Testing / Coverage
+# =========================
+
+coverage/
+*.lcov
+.nyc_output/
+
+# =========================
+# Temporary files
+# =========================
+
+tmp/
+temp/
+.cache/
+*.tmp
+*.bak
+*.swp
+
+# =========================
+# Database backups
+# =========================
+
+*.sql.gz
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Laravel/Laragon local files, if any
+# =========================
+
+storage/logs/
+bootstrap/cache/
+```
