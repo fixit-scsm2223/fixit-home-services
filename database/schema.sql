@@ -22,6 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS safety_notes;
 DROP TABLE IF EXISTS job_status_history;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS payments;
 DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS provider_settings;
 DROP TABLE IF EXISTS provider_availability;
@@ -140,7 +141,31 @@ CREATE TABLE jobs (
     CONSTRAINT fk_jobs_category FOREIGN KEY (category_id) REFERENCES service_categories(id),
     CONSTRAINT fk_jobs_parent   FOREIGN KEY (parent_job_id) REFERENCES jobs(id)
 ) ENGINE=InnoDB;
+-- ---------- payments ----------
+CREATE TABLE payments (
+    id                        BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    job_id                    BIGINT UNSIGNED NOT NULL UNIQUE,
+    customer_id               BIGINT UNSIGNED NOT NULL,
+    provider_id               BIGINT UNSIGNED NOT NULL,
+    amount                    DECIMAL(10,2) UNSIGNED NOT NULL,
+    currency                  CHAR(3) NOT NULL DEFAULT 'myr',
+    stripe_payment_intent_id  VARCHAR(255) NULL UNIQUE,
+    transaction_reference     VARCHAR(100) NOT NULL UNIQUE,
+    status                    ENUM('pending','paid','failed','refunded') NOT NULL DEFAULT 'pending',
+    created_at                TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at                TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
+    INDEX idx_payments_customer (customer_id),
+    INDEX idx_payments_provider (provider_id),
+    INDEX idx_payments_status (status),
+
+    CONSTRAINT fk_payments_job
+        FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE,
+    CONSTRAINT fk_payments_customer
+        FOREIGN KEY (customer_id) REFERENCES users(id),
+    CONSTRAINT fk_payments_provider
+        FOREIGN KEY (provider_id) REFERENCES provider_profiles(id)
+) ENGINE=InnoDB;
 -- ---------- reviews ----------
 CREATE TABLE reviews (
     id          BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
