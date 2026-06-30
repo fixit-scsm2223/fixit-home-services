@@ -1,140 +1,60 @@
-```gitignore
-# =========================
-# Logs
-# =========================
+# Dependencies
+frontend/node_modules/
+backend/vendor/
 
-logs
+# Build output
+frontend/dist/
+frontend/dist-ssr/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/.gradle/
+frontend/android/capacitor-cordova-android-plugins/build/
+
+# Logs and local process output
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+backend/server.err
+backend/server.out
+devpid.txt
+vite.out
+vite.err
+*_pid.txt
 
-# =========================
-# Runtime data
-# =========================
-
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# =========================
-# Diagnostic reports
-# =========================
-
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
-# =========================
-# Dependency directories
-# =========================
-
-node_modules/
-vendor/
-
-# =========================
-# Vue / Frontend build
-# =========================
-
-dist/
-frontend/dist/
-frontend/.vite/
-.vite/
-
-# =========================
-# Environment files
-# =========================
-
+# Environment files and secrets
 .env
-.env.local
-.env.development
-.env.production
-.env.test
-backend/.env
+.env.*
 frontend/.env
-frontend/.env.local
+frontend/.env.*
+backend/.env
+backend/.env.*
+!.env.example
+!.env.*.example
+!frontend/.env.example
+!frontend/.env.*.example
+!backend/.env.example
+!backend/.env.*.example
 
-# =========================
-# PHP / Composer
-# =========================
+# Uploaded KYC files: keep the folder, not private uploads
+backend/storage/kyc/*
+!backend/storage/kyc/.gitkeep
 
-composer.lock
-backend/vendor/
-backend/composer.lock
-
-# =========================
-# Upload files
-# =========================
-
-uploads/
-backend/uploads/
-backend/public/uploads/
-frontend/public/uploads/
-
-# =========================
-# Capacitor / Android
-# =========================
-
-frontend/android/.gradle/
-frontend/android/app/build/
-frontend/android/build/
-frontend/android/local.properties
-frontend/android/.idea/
-frontend/android/captures/
-frontend/android/app/release/
-frontend/android/app/debug/
-
-# =========================
-# IDE / Editor
-# =========================
-
-.vscode/
+# OS/editor junk
+.vscode/*
+!.vscode/extensions.json
 .idea/
-*.sublime-workspace
-*.sublime-project
-
-# =========================
-# OS generated files
-# =========================
-
 .DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
+__MACOSX/
+._*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# =========================
-# Testing / Coverage
-# =========================
-
-coverage/
-*.lcov
-.nyc_output/
-
-# =========================
-# Temporary files
-# =========================
-
-tmp/
-temp/
-.cache/
-*.tmp
-*.bak
-*.swp
-
-# =========================
-# Database backups
-# =========================
-
-*.sql.gz
-*.db
-*.sqlite
-*.sqlite3
-
-# =========================
-# Laravel/Laragon local files, if any
-# =========================
-
-storage/logs/
-bootstrap/cache/
-```
+# Extraction leftovers
+ghufran part1/

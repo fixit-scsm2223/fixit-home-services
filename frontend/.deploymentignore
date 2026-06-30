@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+api/.env
+api/.env.*
+!api/.env.example
+node_modules/
+dist/
+api/vendor/
+api/storage/kyc/*
+!api/storage/kyc/.gitkeep
+devpid.txt
+vite.out
+vite.err
+api/server.out
+api/server.err
+*.log

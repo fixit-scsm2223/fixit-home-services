@@ -1,0 +1,480 @@
+/* ============================================================
+   FixIt — Shared Theme Tokens & Component Classes
+   Ported verbatim from the project design system (style.css /
+   ui-style-guide.md). Import once in main.js so every customer
+   view inherits the same palette, radii, spacing and components.
+   ============================================================ */
+   *, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+body.fixit-shell-layout {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.fixit-shell-layout #app {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body.fixit-document-layout {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.fixit-document-layout #app {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+:root {
+  --color-primary: #2563EB;
+  --color-secondary: #14B8A6;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-background: #F8FAFC;
+  --color-card: #FFFFFF;
+  --color-text: #1E293B;
+  --color-muted: #64748B;
+  --color-border: #E2E8F0;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-main: Inter, Arial, sans-serif;
+
+  --scrollbar-track: #F1F5F9;
+  --scrollbar-thumb: #CBD5E1;
+  --scrollbar-thumb-hover: #94A3B8;
+}
+
+body.night-mode-active {
+  --color-background: #0B0F19;
+  --color-card: #141B2D;
+  --color-text: #F1F5F9;
+  --color-muted: #94A3B8;
+  --color-border: #1E293B;
+  --scrollbar-track: #0B1224;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+}
+
+:root[data-theme="dark"] {
+  --scrollbar-track: #0B1224;
+  --scrollbar-thumb: #334155;
+  --scrollbar-thumb-hover: #475569;
+}
+
+body.night-mode-active input,
+body.night-mode-active select,
+body.night-mode-active textarea {
+  color-scheme: dark;
+}
+
+body.night-mode-active input::placeholder,
+body.night-mode-active textarea::placeholder {
+  color: #94A3B8;
+  opacity: 1;
+}
+
+body.night-mode-active .leaflet-container,
+body.night-mode-active .stripe-card-input {
+  color-scheme: light;
+}
+
+/* ---- Buttons (shared with prototype: btn-ui family) ---- */
+.btn-ui {
+  font-family: var(--font-main);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-ui-primary { background: var(--color-primary); color: #fff; }
+.btn-ui-primary:hover { filter: brightness(1.08); }
+.btn-ui-outline {
+  background: var(--color-card);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+.btn-ui-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.btn-ui-ghost { background: transparent; color: var(--color-muted); }
+.btn-ui-ghost:hover { color: var(--color-text); }
+.btn-ui-danger { background: var(--color-card); color: var(--color-danger); border-color: var(--color-danger); }
+.btn-ui-danger:hover { background: var(--color-danger); color: #fff; }
+.btn-ui-sm { padding: 6px 12px; font-size: 0.8rem; }
+.btn-ui:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---- Badges (shared: badge-ui family) ---- */
+.badge-ui {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.badge-ui-success { background: rgba(34, 197, 94, 0.12); color: #16A34A; }
+.badge-ui-warning { background: rgba(245, 158, 11, 0.12); color: #B45309; }
+.badge-ui-danger  { background: rgba(239, 68, 68, 0.12);  color: #DC2626; }
+body.night-mode-active .badge-ui-success { background: rgba(34,197,94,0.2);  color: #4ADE80; }
+body.night-mode-active .badge-ui-warning { background: rgba(245,158,11,0.2); color: #FBBF24; }
+body.night-mode-active .badge-ui-danger  { background: rgba(239,68,68,0.2);  color: #F87171; }
+
+/* ---- Filter chips (shared: btn-chip family, used by category bar + filter sidebar) ---- */
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 2px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-muted);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: var(--font-main);
+}
+.btn-chip:hover { border-color: var(--color-primary); }
+.btn-chip.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+
+/* ---- Form controls ---- */
+.form-input-element-control,
+.form-select-control {
+  width: 100%;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  padding: 10px 12px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  color: var(--color-text);
+  transition: var(--transition-smooth);
+}
+.form-input-element-control::placeholder {
+  color: var(--color-muted);
+  opacity: 0.78;
+}
+.form-input-element-control:focus,
+.form-select-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+/* Native date/time picker icons render solid black regardless of theme
+   unless color-scheme tells the browser the surrounding UI is dark. */
+body.night-mode-active .form-input-element-control[type="date"],
+body.night-mode-active .form-input-element-control[type="time"] {
+  color-scheme: dark;
+}
+
+/* Native <select> dropdown popups default to a white background, which hides
+   the light option text in night mode — color-scheme tells the browser to
+   render the popup dark instead. */
+body.night-mode-active select {
+  color-scheme: dark;
+}
+
+/* ---- Scrollbars (themed, applies to every scrollable element) ---- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: var(--scrollbar-track);
+}
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 2px solid var(--scrollbar-track);
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+*::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+*::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* ---- Utility ---- */
+.muted { color: var(--color-muted); }
+.text-primary { color: var(--color-primary); }
+.text-success { color: var(--color-success); }
+.tag-pill {
+  display: inline-block;
+  background: var(--color-background);
+  border: 2px solid var(--color-border);
+  color: var(--color-muted);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   Admin module design parity for customer pages
+   ------------------------------------------------------------ */
+.shell {
+  --customer-admin-glow: radial-gradient(circle at top right, rgba(20, 184, 166, 0.11), transparent 34%),
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 28%);
+  --customer-topbar-control-bg: rgba(255, 255, 255, 0.58);
+  --customer-topbar-control-border: color-mix(in srgb, var(--color-border) 76%, var(--color-primary));
+  background:
+    var(--customer-admin-glow),
+    var(--color-background);
+}
+
+.shell.night {
+  --customer-admin-glow: radial-gradient(circle at top right, rgba(20, 184, 166, 0.16), transparent 34%),
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 30%);
+  --customer-topbar-control-bg: rgba(15, 23, 42, 0.32);
+  --customer-topbar-control-border: rgba(148, 163, 184, 0.18);
+}
+
+.shell .sidebar {
+  background:
+    linear-gradient(180deg, rgba(37, 99, 235, 0.11), transparent 28%),
+    linear-gradient(180deg, #0f172a, #07111f);
+  border-right: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 18px 0 48px rgba(15, 23, 42, 0.08);
+}
+
+.shell .sb-brand {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.shell .sb-toggle,
+.shell .nav-item {
+  border-radius: 12px;
+}
+
+.shell .nav-group-label {
+  color: rgba(148, 163, 184, 0.72);
+  letter-spacing: 0.12em;
+}
+
+.shell .nav-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.shell .nav-item.active {
+  background: linear-gradient(135deg, var(--color-primary), #1d4ed8);
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
+}
+
+.shell .avatar,
+.shell .nav-avatar {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+}
+
+.shell .main,
+.shell .content {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(20, 184, 166, 0.11), transparent 24%),
+    radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.10), transparent 26%),
+    var(--color-background);
+}
+
+.shell .topbar {
+  --topbar-control-bg: var(--customer-topbar-control-bg);
+  --topbar-control-border: var(--customer-topbar-control-border);
+  --topbar-control-hover: color-mix(in srgb, var(--color-card) 72%, var(--color-primary) 8%);
+  min-height: 64px;
+  background: color-mix(in srgb, var(--color-background) 74%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+
+.shell .loc-chip,
+.shell .icon-btn,
+.shell .nav-avatar-btn {
+  border: 1px solid var(--customer-topbar-control-border);
+  border-radius: 12px;
+  background: var(--customer-topbar-control-bg);
+  box-shadow: none;
+}
+
+.shell .nav-avatar-btn {
+  border-radius: 50%;
+}
+
+.shell .profile-menu,
+.shell .logout-modal {
+  border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-primary));
+  border-radius: 14px;
+  background: var(--color-card);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+}
+
+.shell .booking-card,
+.shell .category-card,
+.shell .provider-card,
+.shell .filter-panel,
+.shell .ticket-card,
+.shell .ticket-header-card,
+.shell .stepper-card,
+.shell .settings-profile-card,
+.shell .settings-card,
+.shell .summary-grid > div,
+.shell .profile-identity-card,
+.shell .profile-details-card,
+.shell .profile-insights-card,
+.shell .map-toolbar,
+.shell .map-container,
+.shell .booking-form,
+.shell .dashboard-payment-box,
+.shell .table-responsive-frame,
+.shell .panel-body,
+.shell .job-ticket-panel,
+.shell .review-card,
+.shell .recurring-card {
+  border: 1px solid color-mix(in srgb, var(--color-border) 84%, var(--color-primary));
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-card) 94%, #ffffff 6%), color-mix(in srgb, var(--color-card) 88%, rgba(37, 99, 235, 0.08))),
+    var(--color-card);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
+body.night-mode-active .shell .booking-card,
+body.night-mode-active .shell .category-card,
+body.night-mode-active .shell .provider-card,
+body.night-mode-active .shell .filter-panel,
+body.night-mode-active .shell .ticket-card,
+body.night-mode-active .shell .ticket-header-card,
+body.night-mode-active .shell .stepper-card,
+body.night-mode-active .shell .settings-profile-card,
+body.night-mode-active .shell .settings-card,
+body.night-mode-active .shell .summary-grid > div,
+body.night-mode-active .shell .profile-identity-card,
+body.night-mode-active .shell .profile-details-card,
+body.night-mode-active .shell .profile-insights-card,
+body.night-mode-active .shell .map-toolbar,
+body.night-mode-active .shell .map-container,
+body.night-mode-active .shell .booking-form,
+body.night-mode-active .shell .dashboard-payment-box,
+body.night-mode-active .shell .table-responsive-frame,
+body.night-mode-active .shell .panel-body,
+body.night-mode-active .shell .job-ticket-panel,
+body.night-mode-active .shell .review-card,
+body.night-mode-active .shell .recurring-card {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-card) 88%, rgba(37, 99, 235, 0.16)), color-mix(in srgb, var(--color-card) 92%, #020617 8%)),
+    var(--color-card);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+.shell .btn-ui,
+.shell .btn-chip,
+.shell .profile-primary-button,
+.shell .profile-secondary-button,
+.shell .settings-tab,
+.shell .hero-link-btn {
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.shell .btn-ui-primary,
+.shell .profile-primary-button {
+  background: linear-gradient(135deg, var(--color-primary), #1d4ed8);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.18);
+}
+
+.shell .form-input-element-control,
+.shell .form-select-control,
+.shell .form-control,
+.shell .profile-field-control,
+.shell .settings-input,
+.shell .settings-field input,
+.shell .settings-field select,
+.shell .settings-field textarea {
+  border-radius: 12px;
+  border-color: color-mix(in srgb, var(--color-border) 84%, var(--color-primary));
+}
+
+.shell .form-input-element-control:focus,
+.shell .form-select-control:focus,
+.shell .form-control:focus,
+.shell .profile-field-control:focus,
+.shell .settings-field input:focus,
+.shell .settings-field select:focus,
+.shell .settings-field textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.shell .table-ui-core th {
+  background: color-mix(in srgb, var(--color-background) 76%, var(--color-card));
+}

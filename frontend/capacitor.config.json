@@ -1,0 +1,13 @@
+{
+  "appId": "com.fixit.app",
+  "appName": "FixIt",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "http"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}
